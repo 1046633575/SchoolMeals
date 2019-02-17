@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jh.admin.dao.AdminDao">
+
+    <resultMap id="Admin" type="com.jh.admin.entity.Admin">
+        <id column="aid" property="aid" jdbcType="BIGINT" />
+        <result column="aname" property="aname" jdbcType="VARCHAR"/>
+        <result column="apassword" property="apassword" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByNameAndPwd" resultMap="Admin"
+            parameterType="String">
+        SELECT *
+        FROM admin
+        WHERE aname = #{username}
+        <if test="password != null">
+            and apassword = #{password}
+        </if>
+
+    </select>
+
+    <resultMap id="Merchant" type="com.jh.admin.entity.Merchant">
+        <id column="mid" property="mid" jdbcType="BIGINT" />
+        <result column="mname" property="mname" jdbcType="VARCHAR"/>
+        <result column="mimage" property="mimage" jdbcType="VARCHAR"/>
+        <result column="cid" property="cid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="selectFindAllMerchant" resultMap="Merchant">
+        SELECT *
+        FROM merchant
+    </select>
+
+    <select id="selectFindMerchant" resultMap="Merchant" >
+        SELECT *
+        FROM merchant
+        WHERE cid = ${cid}
+    </select>
+
+    <resultMap id="Category" type="com.jh.admin.entity.Category">
+        <id column="cid" property="cid" jdbcType="BIGINT"/>
+        <result column="cname" property="cname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findAllCategory" resultMap="Category">
+        SELECT *
+        FROM category
+    </select>
+
+    <insert id="addMerchant" parameterType="com.jh.admin.entity.Merchant">
+        INSERT
+        INTO merchant(mname,mimage,cid)
+        VALUES(#{mname,jdbcType=VARCHAR},#{mimage,jdbcType=VARCHAR},#{cid,jdbcType=BIGINT})
+    </insert>
+
+    <resultMap id="Orders" type="com.jh.admin.entity.Orders">
+        <id column="oid" property="oid" jdbcType="BIGINT"/>
+        <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP"/>
+        <result column="total" property="total" jdbcType="DECIMAL"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findAllOrders" resultMap="Orders">
+        SELECT *
+        FROM orders
+    </select>
+
+    <select id="findOrder" resultMap="Orders">
+        SELECT *
+        FROM orders
+        WHERE oid = ${oid}
+    </select>
+
+    <resultMap id="OrderItem" type="com.jh.admin.entity.OrderItem">
+        <id column="iid" property="iid" jdbcType="BIGINT"/>
+        <result column="count" property="count" jdbcType="TINYINT"/>
+        <result column="subtotal" property="subtotal" jdbcType="DECIMAL"/>
+        <result column="oid" property="oid" jdbcType="BIGINT"/>
+        <result column="fid" property="fid" jdbcType="BIGINT"/>
+    </resultMap>
+    
+    <select id="findOrders" resultMap="OrderItem">
+        SELECT *
+        FROM orderitem
+        WHERE oid=${oid}
+    </select>
+
+    <insert id="addFood" parameterType="com.jh.admin.entity.Food">
+        INSERT
+        INTO food(fname,price,mid,fimage)
+        VALUE(#{fname,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL},
+        #{mid,jdbcType=BIGINT},#{fimage,jdbcType=VARCHAR})
+    </insert>
+
+    <resultMap id="Food" type="com.jh.admin.entity.Food">
+        <id column="fid" property="fid" jdbcType="BIGINT"/>
+        <result column="fname" property="fname" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="fimage" property="fimage" jdbcType="VARCHAR"/>
+        <result column="mid" property="mid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findFoodDetail" resultMap="Food">
+        SELECT *
+        FROM food
+        WHERE mid=${mid}
+    </select>
+
+    <delete id="deleteMerchant" parameterType="java.lang.Long">
+        DELETE
+        FROM merchant
+        WHERE mid=${mid}
+    </delete>
+
+    <delete id="deleteFood" parameterType="java.lang.Long">
+        DELETE
+        FROM food
+        WHERE fid=${fid}
+    </delete>
+
+</mapper>

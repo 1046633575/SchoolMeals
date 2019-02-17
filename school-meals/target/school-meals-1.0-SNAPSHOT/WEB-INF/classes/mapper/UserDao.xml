@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jh.user.dao.UserDao">
+
+    <resultMap id="User" type="com.jh.user.entity.User">
+        <id column="uid" property="uid" jdbcType="BIGINT" />
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="CHAR"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="balance" property="balance" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <select id="selectByNameAndPwd" resultMap="User"
+            parameterType="String">
+        SELECT *
+        FROM user
+        WHERE username = #{username}
+        <if test="password != null">
+            and password = #{password}
+        </if>
+
+    </select>
+
+    <resultMap id="Merchant" type="com.jh.user.entity.Merchant">
+        <id column="mid" property="mid" jdbcType="BIGINT" />
+        <result column="mname" property="mname" jdbcType="VARCHAR"/>
+        <result column="mimage" property="mimage" jdbcType="VARCHAR"/>
+        <result column="cid" property="cid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findMerchant" resultMap="Merchant" >
+        SELECT *
+        FROM merchant
+        WHERE cid = ${cid}
+    </select>
+
+    <resultMap id="Food" type="com.jh.user.entity.Food">
+        <id column="fid" property="fid" jdbcType="BIGINT"/>
+        <result column="fname" property="fname" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="fimage" property="fimage" jdbcType="VARCHAR"/>
+        <result column="mid" property="mid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findFoodDetail" resultMap="Food">
+        SELECT *
+        FROM food
+        WHERE mid=${mid}
+    </select>
+
+    <select id="findFood" resultMap="Food">
+        SELECT *
+        FROM food
+        WHERE fid=${fid}
+    </select>
+
+    <insert id="addOrder" parameterType="com.jh.user.entity.Orders">
+        INSERT
+        INTO orders(oid,ordertime,total,state,uid,address,phone)
+        VALUE(#{oid,jdbcType=BIGINT},#{ordertime,jdbcType=TIMESTAMP},#{total,jdbcType=DECIMAL},#{state,jdbcType=TINYINT},
+            #{uid,jdbcType=BIGINT},#{address,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="addOrderItem" parameterType="com.jh.user.entity.OrderItem">
+        INSERT
+        INTO orderitem(count,subtotal,oid,fid)
+        VALUE(#{count,jdbcType=INTEGER},#{subtotal,jdbcType=DECIMAL},
+            #{oid,jdbcType=BIGINT},#{fid,jdbcType=BIGINT})
+    </insert>
+
+    <resultMap id="Orders" type="com.jh.user.entity.Orders">
+        <id column="oid" property="oid" jdbcType="BIGINT"/>
+        <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP"/>
+        <result column="total" property="total" jdbcType="DECIMAL"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="uid" property="uid" jdbcType="BIGINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findOrder" resultMap="Orders">
+        SELECT *
+        FROM orders
+        WHERE oid = ${oid}
+    </select>
+
+    <select id="findOrders" resultMap="Orders">
+        SELECT *
+        FROM orders
+        WHERE uid = ${uid}
+    </select>
+
+    <update id="pay">
+        UPDATE user
+        SET balance = balance - ${total}
+        WHERE uid = ${uid}
+    </update>
+
+    <update id="over">
+        UPDATE orders
+        SET state = 2
+        WHERE oid = ${oid}
+    </update>
+
+    <resultMap id="OrderItem" type="com.jh.user.entity.OrderItem">
+        <id column="iid" property="iid" jdbcType="BIGINT"/>
+        <result column="count" property="count" jdbcType="TINYINT"/>
+        <result column="subtotal" property="subtotal" jdbcType="DECIMAL"/>
+        <result column="oid" property="oid" jdbcType="BIGINT"/>
+        <result column="fid" property="fid" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="orderDetail" resultMap="OrderItem">
+        SELECT *
+        FROM orderitem
+        WHERE oid = ${oid}
+    </select>
+
+
+</mapper>

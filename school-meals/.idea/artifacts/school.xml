@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="school">
+    <output-path>$PROJECT_DIR$/out/artifacts/school</output-path>
+    <root id="archive" name="school.ear">
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp" />
+    </root>
+  </artifact>
+</component>

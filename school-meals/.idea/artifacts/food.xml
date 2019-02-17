@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="food">
+    <output-path>$PROJECT_DIR$/out/artifacts/food</output-path>
+    <root id="archive" name="food.war">
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp" />
+      <element id="module-output" name="school-meals" />
+    </root>
+  </artifact>
+</component>
