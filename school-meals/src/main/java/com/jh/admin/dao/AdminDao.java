@@ -1,8 +1,7 @@
 package com.jh.admin.dao;
 
-import com.jh.admin.entity.*;
+import com.jh.entity.*;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface AdminDao {
      * @param password
      * @return
      */
-    Admin selectByNameAndPwd(@Param("username") String username,@Param("password") String password);
+    Admin selectByNameAndPwd(@Param("username") String username, @Param("password") String password);
 
     /**
      * 查询所有店铺

@@ -42,16 +42,7 @@
             </div>
         </div>
 
-        <%--<label class="check">选择餐厅</label>--%>
-        <%--<select class="form-control" name="cid">--%>
-            <%--<option >请选择餐厅</option>--%>
-            <%--<c:forEach items="${list1}" var="list1">--%>
-                <%--<option value="${list1.cid}">${list1.cname}</option>--%>
-            <%--</c:forEach>--%>
-        <%--</select>--%>
-        <%--<c:forEach items="${categoryList }" var="c">--%>
-            <%--<option value="${c.cid }">${c.cname }</option>--%>
-        <%--</c:forEach>--%>
+
         <div class="form-group">
             <label  class="col-sm-2 control-label">店铺图片</label>
             <div class="form-group">

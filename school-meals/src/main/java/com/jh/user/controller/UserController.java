@@ -1,12 +1,10 @@
 package com.jh.user.controller;
 
 import com.jh.user.cart.Cart;
-import com.jh.user.entity.*;
-import com.jh.user.cart.Cart;
+import com.jh.entity.*;
 import com.jh.user.cart.CartItem;
 import com.jh.user.service.UserService;
 import com.jh.user.util.Uuid;
-import org.apache.ibatis.annotations.Lang;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -324,6 +321,19 @@ public class UserController {
         //查询订单详情
         List<OrderItem> listOrderItem = userService.orderDetail(oid);
         session.setAttribute("listOrderItem",listOrderItem);
+
+        List<Food> listFood = new ArrayList<Food>();
+        //遍历List查找食物id
+        for (OrderItem orderItem : listOrderItem) {
+            long fid = orderItem.getFid();
+            //根据食物id查找到食物对象
+            Food food = userService.findFood(fid);
+            //将食物对象添加到List集合中
+            listFood.add(food);
+        }
+        //将List集合保存到session
+        session.setAttribute("listFood",listFood);
+
 
         return "user/orderItem";
     }

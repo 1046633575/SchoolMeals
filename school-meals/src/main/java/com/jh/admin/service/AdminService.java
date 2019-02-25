@@ -1,14 +1,13 @@
 package com.jh.admin.service;
 
-import com.jh.admin.entity.*;
-import org.apache.ibatis.annotations.Param;
+import com.jh.entity.*;
 
 import java.util.List;
 
 public interface AdminService {
 
 
-    Admin selectByNameAndPwd(String username,String password);
+    Admin selectByNameAndPwd(String username, String password);
 
 
     List<Merchant> selectFindAllMerchant();

@@ -1,8 +1,8 @@
 package com.jh.admin.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jh.admin.entity.*;
 import com.jh.admin.service.AdminService;
+import com.jh.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -113,8 +113,8 @@ public class  AdminController {
         Merchant mer = new Merchant();
 
         String fileName = file.getOriginalFilename();
-//        String path = "C:\\Users\\Administrator\\Desktop\\school-meals\\src\\main\\webapp\\page\\merchant_image\\";
-        String path = "\\user\\tomcat\\webapps\\meal\\page\\merchant_image\\";
+        String path = "C:\\Users\\Administrator\\Desktop\\school-meals\\src\\main\\webapp\\page\\merchant_image\\";
+//        String path = "\\user\\tomcat\\webapps\\meal\\page\\merchant_image\\";
         File newFile=new File(path);
 
         //如果保存文件的地址不存在，就先创建目录
@@ -216,8 +216,8 @@ public class  AdminController {
 
         Food f = new Food();
         String fileName = file.getOriginalFilename();
-//        String path = "C:\\Users\\Administrator\\Desktop\\school-meals\\src\\main\\webapp\\page\\food_image\\";
-        String path = "\\user\\tomcat\\webapps\\meal\\page\\food_image\\";
+        String path = "C:\\Users\\Administrator\\Desktop\\school-meals\\src\\main\\webapp\\page\\food_image\\";
+//        String path = "\\user\\tomcat\\webapps\\meal\\page\\food_image\\";
         File newFile=new File(path);
 
         //如果保存文件的地址不存在，就先创建目录

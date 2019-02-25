@@ -1,10 +1,8 @@
 package com.jh.user.dao;
 
-import com.jh.user.entity.*;
+import com.jh.entity.*;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserDao {
@@ -16,7 +14,7 @@ public interface UserDao {
      * @param password
      * @return
      */
-    User selectByNameAndPwd(@Param("username") String username,@Param("password") String password);
+    User selectByNameAndPwd(@Param("username") String username, @Param("password") String password);
 
     /**
      * 分类查询店铺

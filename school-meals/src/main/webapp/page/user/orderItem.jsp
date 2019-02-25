@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -23,22 +22,26 @@
             <th>收货地址: ${order.address}</th>
         </tr>
         <tr>
-            <th>项id</th>
+            <th>商品图片</th>
+            <th>商品名称</th>
             <th>商品数量</th>
             <th>小计</th>
             <th>所属订单</th>
-            <th>所属商品id</th>
         </tr>
         </thead>
-        <tbody>
-        <c:forEach items="${listOrderItem}" var="list">
-            <td style="color: darkgreen">${list.fid}</td>
-            <td style="color: crimson">${list.count}</td>
-            <td style="color: brown">${list.subtotal}</td>
-            <td style="color: blue">${list.oid}</td>
-            <td style="color: blueviolet">${list.fid}</td>
+
+            <c:forEach items="${listOrderItem}" var="list" varStatus="s">
+                <tr>
+                    <td style="color: darkgreen">
+                        <image id="fimage" src="${listFood[s.index].fimage}"></image>
+                    </td>
+                    <td>${listFood[s.index].fname}</td>
+                    <td style="color: crimson">${list.count}</td>
+                    <td style="color: brown">${list.subtotal}</td>
+                    <td style="color: blue">${list.oid}</td>
+                </tr>
         </c:forEach>
-        </tbody>
+
     </table>
 
 </body>

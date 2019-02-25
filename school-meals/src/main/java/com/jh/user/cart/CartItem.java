@@ -1,6 +1,7 @@
 package com.jh.user.cart;
 
-import com.jh.user.entity.Food;
+import com.jh.entity.Food;
+import com.jh.entity.Food;
 
 import java.math.BigDecimal;
 

@@ -26,22 +26,11 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
 
-        <!--&lt;!&ndash;继承pageHelper插件 &ndash;&gt;-->
-        <!--<property name="plugins">-->
-            <!--<bean class="com.github.pagehelper.PageHelper">-->
-                <!--<property name="properties">-->
-                    <!--<value>-->
-                        <!--dialect=mysql-->
-                        <!--params=pageNum=start;pageSize=limit;-->
-                    <!--</value>-->
-                <!--</property>-->
-            <!--</bean>-->
-        <!--</property>-->
     </bean>
 
     <!-- 扫描mapper的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.jh.*.dao"/><!-- TODO-->
+        <property name="basePackage" value="com.jh.*.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

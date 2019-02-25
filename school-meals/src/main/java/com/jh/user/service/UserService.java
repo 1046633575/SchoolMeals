@@ -1,13 +1,7 @@
 package com.jh.user.service;
 
-import com.jh.admin.entity.Food;
-import com.jh.user.entity.Merchant;
-import com.jh.user.entity.OrderItem;
-import com.jh.user.entity.Orders;
-import com.jh.user.entity.User;
-import org.apache.ibatis.annotations.Param;
+import com.jh.entity.*;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserService {
@@ -32,14 +26,14 @@ public interface UserService {
      * @param mid
      * @return
      */
-    List<com.jh.user.entity.Food> findFoodDetail(long mid);
+    List<Food> findFoodDetail(long mid);
 
     /**
      * 加载食物
      * @param fid
      * @return
      */
-    com.jh.user.entity.Food findFood(long fid);
+    Food findFood(long fid);
 
     /**
      * 添加订单

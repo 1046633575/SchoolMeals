@@ -1,6 +1,6 @@
 package com.jh.user.service.impl;
 
-import com.jh.user.entity.*;
+import com.jh.entity.*;
 import com.jh.user.dao.UserDao;
 import com.jh.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

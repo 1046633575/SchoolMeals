@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jh.admin.dao.AdminDao">
 
-    <resultMap id="Admin" type="com.jh.admin.entity.Admin">
+    <resultMap id="Admin" type="com.jh.entity.Admin">
         <id column="aid" property="aid" jdbcType="BIGINT" />
         <result column="aname" property="aname" jdbcType="VARCHAR"/>
         <result column="apassword" property="apassword" jdbcType="VARCHAR"/>
@@ -21,7 +21,7 @@
 
     </select>
 
-    <resultMap id="Merchant" type="com.jh.admin.entity.Merchant">
+    <resultMap id="Merchant" type="com.jh.entity.Merchant">
         <id column="mid" property="mid" jdbcType="BIGINT" />
         <result column="mname" property="mname" jdbcType="VARCHAR"/>
         <result column="mimage" property="mimage" jdbcType="VARCHAR"/>
@@ -39,7 +39,7 @@
         WHERE cid = ${cid}
     </select>
 
-    <resultMap id="Category" type="com.jh.admin.entity.Category">
+    <resultMap id="Category" type="com.jh.entity.Category">
         <id column="cid" property="cid" jdbcType="BIGINT"/>
         <result column="cname" property="cname" jdbcType="VARCHAR"/>
     </resultMap>
@@ -49,13 +49,13 @@
         FROM category
     </select>
 
-    <insert id="addMerchant" parameterType="com.jh.admin.entity.Merchant">
+    <insert id="addMerchant" parameterType="com.jh.entity.Merchant">
         INSERT
         INTO merchant(mname,mimage,cid)
         VALUES(#{mname,jdbcType=VARCHAR},#{mimage,jdbcType=VARCHAR},#{cid,jdbcType=BIGINT})
     </insert>
 
-    <resultMap id="Orders" type="com.jh.admin.entity.Orders">
+    <resultMap id="Orders" type="com.jh.entity.Orders">
         <id column="oid" property="oid" jdbcType="BIGINT"/>
         <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP"/>
         <result column="total" property="total" jdbcType="DECIMAL"/>
@@ -76,7 +76,7 @@
         WHERE oid = ${oid}
     </select>
 
-    <resultMap id="OrderItem" type="com.jh.admin.entity.OrderItem">
+    <resultMap id="OrderItem" type="com.jh.entity.OrderItem">
         <id column="iid" property="iid" jdbcType="BIGINT"/>
         <result column="count" property="count" jdbcType="TINYINT"/>
         <result column="subtotal" property="subtotal" jdbcType="DECIMAL"/>
@@ -90,14 +90,14 @@
         WHERE oid=${oid}
     </select>
 
-    <insert id="addFood" parameterType="com.jh.admin.entity.Food">
+    <insert id="addFood" parameterType="com.jh.entity.Food">
         INSERT
         INTO food(fname,price,mid,fimage)
         VALUE(#{fname,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL},
         #{mid,jdbcType=BIGINT},#{fimage,jdbcType=VARCHAR})
     </insert>
 
-    <resultMap id="Food" type="com.jh.admin.entity.Food">
+    <resultMap id="Food" type="com.jh.entity.Food">
         <id column="fid" property="fid" jdbcType="BIGINT"/>
         <result column="fname" property="fname" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="DECIMAL"/>

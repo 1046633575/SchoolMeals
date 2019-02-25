@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jh.user.dao.UserDao">
 
-    <resultMap id="User" type="com.jh.user.entity.User">
+    <resultMap id="User" type="com.jh.entity.User">
         <id column="uid" property="uid" jdbcType="BIGINT" />
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
@@ -25,7 +25,7 @@
 
     </select>
 
-    <resultMap id="Merchant" type="com.jh.user.entity.Merchant">
+    <resultMap id="Merchant" type="com.jh.entity.Merchant">
         <id column="mid" property="mid" jdbcType="BIGINT" />
         <result column="mname" property="mname" jdbcType="VARCHAR"/>
         <result column="mimage" property="mimage" jdbcType="VARCHAR"/>
@@ -38,7 +38,7 @@
         WHERE cid = ${cid}
     </select>
 
-    <resultMap id="Food" type="com.jh.user.entity.Food">
+    <resultMap id="Food" type="com.jh.entity.Food">
         <id column="fid" property="fid" jdbcType="BIGINT"/>
         <result column="fname" property="fname" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="DECIMAL"/>
@@ -58,21 +58,21 @@
         WHERE fid=${fid}
     </select>
 
-    <insert id="addOrder" parameterType="com.jh.user.entity.Orders">
+    <insert id="addOrder" parameterType="com.jh.entity.Orders">
         INSERT
         INTO orders(oid,ordertime,total,state,uid,address,phone)
         VALUE(#{oid,jdbcType=BIGINT},#{ordertime,jdbcType=TIMESTAMP},#{total,jdbcType=DECIMAL},#{state,jdbcType=TINYINT},
             #{uid,jdbcType=BIGINT},#{address,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="addOrderItem" parameterType="com.jh.user.entity.OrderItem">
+    <insert id="addOrderItem" parameterType="com.jh.entity.OrderItem">
         INSERT
         INTO orderitem(count,subtotal,oid,fid)
         VALUE(#{count,jdbcType=INTEGER},#{subtotal,jdbcType=DECIMAL},
             #{oid,jdbcType=BIGINT},#{fid,jdbcType=BIGINT})
     </insert>
 
-    <resultMap id="Orders" type="com.jh.user.entity.Orders">
+    <resultMap id="Orders" type="com.jh.entity.Orders">
         <id column="oid" property="oid" jdbcType="BIGINT"/>
         <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP"/>
         <result column="total" property="total" jdbcType="DECIMAL"/>
@@ -106,7 +106,7 @@
         WHERE oid = ${oid}
     </update>
 
-    <resultMap id="OrderItem" type="com.jh.user.entity.OrderItem">
+    <resultMap id="OrderItem" type="com.jh.entity.OrderItem">
         <id column="iid" property="iid" jdbcType="BIGINT"/>
         <result column="count" property="count" jdbcType="TINYINT"/>
         <result column="subtotal" property="subtotal" jdbcType="DECIMAL"/>

@@ -1,10 +1,9 @@
 package com.jh.admin.service.impl;
 
 import com.jh.admin.dao.AdminDao;
-import com.jh.admin.entity.*;
 import com.jh.admin.service.AdminService;
+import com.jh.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
      * @param password
      * @return
      */
-    public Admin selectByNameAndPwd(String username,String password) {
+    public Admin selectByNameAndPwd(String username, String password) {
         return adminDao.selectByNameAndPwd(username,password);
     }
 
